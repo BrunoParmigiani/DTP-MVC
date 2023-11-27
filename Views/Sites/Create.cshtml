@@ -1,5 +1,7 @@
 ﻿@model DTP.Models.Sites
 
+@* Page rendered by the controller *@
+
 @{
     ViewData["Title"] = "Create";
 }
@@ -8,36 +10,18 @@
 
 <h4>Sites</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Link" class="control-label"></label>
-                <input asp-for="Link" class="form-control" />
-                <span asp-validation-for="Link" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<div class="col-md-4">
+    @* Post method to be called *@
+    <form asp-action="Create">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control"/>
+        <label asp-for="Image" class="control-label"></label>
+        <input asp-for="Image" value="placeholder.png" class="form-control"/>
+        <label asp-for="Link" class="control-label"></label>
+        <input asp-for="Link" class="form-control"/>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+        <br />
+        <input type="submit" value="Create" class="btn bg-white"/>
+    </form>
+</div>

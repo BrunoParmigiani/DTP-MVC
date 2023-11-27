@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using DTP.Data;
+using DTP.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DTPContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("DTPContext"),
@@ -8,6 +10,7 @@ builder.Services.AddDbContext<DTPContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<SitesService>();
 
 var app = builder.Build();
 

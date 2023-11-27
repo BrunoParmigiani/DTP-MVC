@@ -2,46 +2,49 @@
 
 @{
     ViewData["Title"] = "Index";
+    List<Sites> sites = Model.ToList();
 }
 
-<h1>Index</h1>
+<section class="text-white" style="margin-top: 100px;">
+    @{
+        double items = 7.0;
+        int rows = (int)Math.Ceiling(sites.Count() / items);
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Link)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
-            <td>
-                <a href="@Html.DisplayFor(modelItem => item.Link)" target="_blank">@Html.DisplayFor(modelItem => item.Name)</a>
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        for (int row = 0; row < rows; row++)
+        {
+            <div class="d-flex justify-content-center">
+                @{
+                    for (int i = 0; i < items; i++)
+                    {
+                        try
+                        {
+                            Sites site = sites[i + row * 7];
+                            string image = @"images/" + site.Image;
+
+                            <div class="d-grid align-content-end" style="height: 250px;">
+                                <div class="text-center">
+                                    <a href=@site.Link target="_blank" class="d-flex justify-content-center align-items-center bg-white" style="margin: 15px; width: 120px; height: 120px; border-radius: 10px;">
+                                        <img type="image" src=@image style="width: 100px; height: 100px;">
+                                    </a>
+                                    <p>@site.Name</p>
+                                </div>
+                            </div>
+                        }
+                        catch (ArgumentException e)
+                        {
+                            string time = DateTime.Now.ToString("hh:mm:ss");
+                            Console.WriteLine($"[{time}] {e.Message}");
+                        }
+                    }
+                }
+            </div>
+        }
+    }
+
+    @* Redirect to service pages using the controller *@
+    <ul>
+        <a class="btn bg-white" asp-action="Create">Create</a>
+        <a class="btn bg-white" asp-action="Edit">Edit</a>
+        <a class="btn btn-danger" asp-action="Delete">Delete</a>
+    </ul>
+</section>
