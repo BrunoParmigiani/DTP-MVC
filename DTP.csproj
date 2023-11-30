@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\favicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\images\clarity.png" />
     <None Include="wwwroot\images\cx.png" />
     <None Include="wwwroot\images\datafone.png" />
@@ -22,6 +26,7 @@
     <None Include="wwwroot\images\sgpe.png" />
     <None Include="wwwroot\images\sisgf.png" />
     <None Include="wwwroot\images\tic.png" />
+    <None Include="wwwroot\favicon.ico" />
   </ItemGroup>
 
   <ItemGroup>
