@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DTP.Services;
 using DTP.Models;
+using DTP.Services.Exceptions;
+using System.Diagnostics;
 
 namespace DTP.Controllers
 {
@@ -42,13 +44,13 @@ namespace DTP.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { Message = "Id not provided" });
             }
 
             var obj = _sitesService.FindById(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { Message = "Id not found" });
             }
 
             return View(obj);
@@ -58,30 +60,38 @@ namespace DTP.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, Sites site)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(site);
+            }
+
+            if (id != site.Id)
+            {
+                return RedirectToAction(nameof(Error), new { Message = "Id mismatch" });
+            }
+
             try
             {
                 _sitesService.Update(site);
                 return RedirectToAction(nameof(Index));
             }
-            catch (Exception ex)
+            catch (ApplicationException ex)
             {
-                Console.WriteLine(ex.Message);
+                return RedirectToAction(nameof(Error), new { Message = ex.Message });
             }
-
-            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Delete(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
             var obj = _sitesService.FindById(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
 
             return View(obj);
@@ -93,6 +103,17 @@ namespace DTP.Controllers
         {
             _sitesService.Remove(id);
             return RedirectToAction(nameof(Details));
+        }
+
+        public IActionResult Error(string message)
+        {
+            var viewModel = new ErrorViewModel()
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+
+            return View(viewModel);
         }
     }
 }

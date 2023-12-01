@@ -1,5 +1,6 @@
 ﻿using DTP.Data;
 using DTP.Models;
+using DTP.Services.Exceptions;
 
 namespace DTP.Services
 {
@@ -30,14 +31,19 @@ namespace DTP.Services
 
         public void Update(Sites site)
         {
+            if (!_context.Sites.Any(x => x.Id == site.Id))
+            {
+                throw new NotFoundException("Id not found");
+            }
+
             try
             {
                 _context.Sites.Update(site);
                 _context.SaveChanges();
             }
-            catch (Exception ex)
+            catch (DBConcurrencyException ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new DBConcurrencyException(ex.Message);
             }
         }
 
