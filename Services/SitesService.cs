@@ -1,6 +1,7 @@
 ﻿using DTP.Data;
 using DTP.Models;
 using DTP.Services.Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 namespace DTP.Services
 {
@@ -13,23 +14,23 @@ namespace DTP.Services
             _context = context;
         }
 
-        public List<Sites> FindAll()
+        public async Task<List<Sites>> FindAllAsync()
         {
-            return _context.Sites.ToList();
+            return await _context.Sites.ToListAsync();
         }
 
-        public Sites FindById(int id)
+        public async Task<Sites> FindByIdAsync(int id)
         {
-            return _context.Sites.FirstOrDefault(x => x.Id == id);
+            return await _context.Sites.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public void Insert(Sites site)
+        public async Task InsertAsync(Sites site)
         {
             _context.Sites.Add(site);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Update(Sites site)
+        public async Task UpdateAsync(Sites site)
         {
             if (!_context.Sites.Any(x => x.Id == site.Id))
             {
@@ -39,7 +40,7 @@ namespace DTP.Services
             try
             {
                 _context.Sites.Update(site);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             catch (DBConcurrencyException ex)
             {
@@ -47,11 +48,11 @@ namespace DTP.Services
             }
         }
 
-        public void Remove(int id)
+        public async Task RemoveAsync(int id)
         {
-            var site = _context.Sites.Find(id);
+            var site = await _context.Sites.FindAsync(id);
             _context.Sites.Remove(site);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -15,15 +15,15 @@ namespace DTP.Controllers
             _sitesService = service;
         }
 
-        public IActionResult Index()
+        public async Task <IActionResult> Index()
         {
-            var list = _sitesService.FindAll();
+            var list = await _sitesService.FindAllAsync();
             return View(list);
         }
 
-        public IActionResult Details()
+        public async Task<IActionResult> Details()
         {
-            var list = _sitesService.FindAll();
+            var list = await _sitesService.FindAllAsync();
             return View(list);
         }
 
@@ -34,20 +34,20 @@ namespace DTP.Controllers
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public IActionResult Create(Sites site) // [POST] Insertion method
+        public async Task<IActionResult> Create(Sites site) // [POST] Insertion method
         {
-            _sitesService.Insert(site);
+            await _sitesService.InsertAsync(site);
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { Message = "Id not provided" });
             }
 
-            var obj = _sitesService.FindById(id.Value);
+            var obj = await _sitesService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { Message = "Id not found" });
@@ -58,7 +58,7 @@ namespace DTP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Sites site)
+        public async Task<IActionResult> Edit(int id, Sites site)
         {
             if (!ModelState.IsValid)
             {
@@ -72,8 +72,8 @@ namespace DTP.Controllers
 
             try
             {
-                _sitesService.Update(site);
-                return RedirectToAction(nameof(Index));
+                await _sitesService.UpdateAsync(site);
+                return RedirectToAction(nameof(Details));
             }
             catch (ApplicationException ex)
             {
@@ -81,14 +81,14 @@ namespace DTP.Controllers
             }
         }
 
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
-            var obj = _sitesService.FindById(id.Value);
+            var obj = await _sitesService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not found" });
@@ -99,9 +99,9 @@ namespace DTP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            _sitesService.Remove(id);
+            await _sitesService.RemoveAsync(id);
             return RedirectToAction(nameof(Details));
         }
 

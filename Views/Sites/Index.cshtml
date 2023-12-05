@@ -5,7 +5,12 @@
     List<Sites> sites = Model.ToList();
 }
 
-<section class="text-white" style="margin-top: 100px;">
+<ul class="d-flex justify-content-end" style="margin: 0px;">
+    <a class="btn bg-white" style="font-weight: 600; width: 38px;" asp-action="Details">!</a>
+    <a class="btn btn-success" style="margin-left: 10px; font-weight: 800; width: 38px;" asp-action="Create">+</a>
+</ul>
+
+<section class="text-white" style="margin-top: 80px;">
     @{
         double items = 7.0;
         int rows = (int)Math.Ceiling(sites.Count() / items);
@@ -42,8 +47,4 @@
     }
 
     @* Redirect to service pages using the controller *@
-    <ul>
-        <a class="btn bg-white" asp-action="Create">New Reference</a>
-        <a class="btn bg-white" asp-action="Details">Details</a>
-    </ul>
 </section>
