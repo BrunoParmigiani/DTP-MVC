@@ -11,7 +11,7 @@ namespace DTP.Data
             _context = context;
         }
 
-        public void Seed()
+        public void SeedSites()
         {
             if (_context.Sites.Any())
             {
@@ -36,6 +36,29 @@ namespace DTP.Data
             };
 
             _context.AddRange(sites);
+
+            _context.SaveChanges();
+        }
+
+        public void SeedDTPs()
+        {
+            if (_context.DTPs.Any())
+            {
+                return;
+            }
+
+            DTPs[] dtps =
+            {
+                new DTPs(1, "083655", "202291", "Migração de base de DEV do TCEII"),
+                new DTPs(2, "083676", "202307", "Ajustes de Não Conformidades no ambiente P500"),
+                new DTPs(3, "083693", "202317", "Migração de base de DEV do eSocial e eSocial Cnis"),
+                new DTPs(4, "083722", "202339", "Migração da base dos formulários dinâmicos"),
+                new DTPs(5, "083717", "202338", "Migração de base de DEV do e-SISREC"),
+                new DTPs(6, "083723", "202352", "Migração de base de DEV do SERIS e SIDAT"),
+                new DTPs(7, "083733", "202366", "Criação de ambiente de Teste de Restore no DCRJ, DCDF e DCSP: AVAMAR")
+            };
+
+            _context.AddRange(dtps);
 
             _context.SaveChanges();
         }

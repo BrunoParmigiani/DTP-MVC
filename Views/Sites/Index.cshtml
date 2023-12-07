@@ -1,8 +1,8 @@
-﻿@model IEnumerable<DTP.Models.Sites>
+﻿@model List<DTP.Models.Sites>
 
 @{
     ViewData["Title"] = "Index";
-    List<Sites> sites = Model.ToList();
+    List<Sites> sites = Model;
 }
 
 <ul class="d-flex justify-content-end" style="margin: 0px;">

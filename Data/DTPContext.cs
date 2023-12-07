@@ -15,5 +15,6 @@ namespace DTP.Data
         }
 
         public DbSet<Sites> Sites { get; set; } = default!;
+        public DbSet<DTPs> DTPs { get; set; } = default!;
     }
 }

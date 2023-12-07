@@ -11,6 +11,7 @@ builder.Services.AddDbContext<DTPContext>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<SitesService>();
+builder.Services.AddScoped<DTPsService>();
 
 var app = builder.Build();
 
@@ -21,7 +22,7 @@ using (var scope = app.Services.CreateScope())
     context.Database.EnsureCreated();
 
     SeedingService seedingService = new SeedingService(context);
-    seedingService.Seed();
+    seedingService.SeedDTPs();
 }
 
 // Configure the HTTP request pipeline.
