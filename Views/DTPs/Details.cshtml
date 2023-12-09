@@ -1,0 +1,20 @@
+﻿@model DTP.Models.DTPs
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@ViewData["Title"]</h1>
+<br />
+
+<h2>DTP.@Html.DisplayFor(model => model.Number)</h2>
+<hr />
+
+<div>
+    <h4>@Model.GetFullName()</h4>
+    <p>Project page: <a href="@Model.GetProjectPageLink()" target="_blank">DTP.@Model.Number</a></p>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn bg-white">Return to DTPs</a>
+</div>

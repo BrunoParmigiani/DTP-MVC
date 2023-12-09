@@ -7,23 +7,30 @@
 <h2>@ViewData["Title"]</h2>
 
 <hr />
+<p>
+    <a asp-action="Create" class="btn btn-success">Create new</a>
+</p>
 
 <table class="table table-striped table-hover bg-light">
     <tr>
         <th>DTP</th>
         <th>@Html.DisplayNameFor(model => model.Name)</th>
+        <th>Configure</th>
     </tr>
     @foreach (var item in Model)
     {
-        var dtpNumber = item.Number;
-        string pageLink = $"https://dataprevrj.sharepoint.com/sites/DIPD/SitePages/DTP.{dtpNumber}.aspx";
         <tr>
             <td>
-                <a href="@pageLink" target="_blank">
+                <a href="@item.GetProjectPageLink()" target="_blank">
                     DTP.@Html.DisplayFor(modelItem => item.Number)
                 </a>
             </td>
-            <td>DM.@Html.DisplayFor(modelItem => item.DM) - @Html.DisplayFor(modelItem => item.Name)</td>
+            <td>@item.GetFullName()</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
         </tr>
     }
 </table>

@@ -18,5 +18,15 @@
             DM = dm;
             Name = name;
         }
+
+        public string GetProjectPageLink()
+        {
+            return $"https://dataprevrj.sharepoint.com/sites/DIPD/SitePages/DTP.{Number}.aspx";
+        }
+
+        public string GetFullName()
+        {
+            return $"DM.{DM} - {Name}";
+        }
     }
 }

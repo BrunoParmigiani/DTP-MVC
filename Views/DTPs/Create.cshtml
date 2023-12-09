@@ -1,0 +1,25 @@
+﻿@model DTP.Models.DTPs
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>DTPs</h4>
+<br />
+
+<div class="col-md-4">
+    <form asp-action="Create">
+        <label asp-for="Number" class="control-label"></label>
+        <input asp-for="Number" class="form-control" />
+        <label asp-for="DM" class="control-label"></label>
+        <input asp-for="DM" class="form-control" />
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+
+        <br />
+        <input type="submit" value="Create" class="btn btn-success"/>
+        <a asp-action="Index" class="btn bg-white">Cancel</a>
+    </form>
+</div>
