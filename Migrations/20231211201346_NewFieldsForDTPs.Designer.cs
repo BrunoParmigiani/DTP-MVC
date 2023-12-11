@@ -2,6 +2,7 @@
 using DTP.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DTP.Migrations
 {
     [DbContext(typeof(DTPContext))]
-    partial class DTPContextModelSnapshot : ModelSnapshot
+    [Migration("20231211201346_NewFieldsForDTPs")]
+    partial class NewFieldsForDTPs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,6 +27,7 @@ namespace DTP.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Analyst")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("DM")
@@ -32,9 +35,11 @@ namespace DTP.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("Demandant")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Leader")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")

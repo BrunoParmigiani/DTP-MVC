@@ -1,9 +1,19 @@
 ﻿@model List<DTP.Models.Sites>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Home";
     List<Sites> sites = Model;
 }
+
+<style>
+    .animated {
+        transition: margin .5s;
+    }
+
+    .animated:hover {
+        margin-bottom: 35px;
+    }
+</style>
 
 <ul class="d-flex justify-content-end" style="margin: 0px;">
     <a class="btn bg-white" style="font-weight: 600; width: 38px;" asp-action="Details">!</a>
@@ -27,7 +37,7 @@
                             string image = @"images/" + site.Image;
 
                             <div class="d-grid align-content-end" style="height: 250px;">
-                                <div class="text-center">
+                                <div class="text-center animated">
                                     <a href=@site.Link target="_blank" class="d-flex justify-content-center align-items-center bg-white" style="margin: 15px; width: 120px; height: 120px; border-radius: 10px;">
                                         <img type="image" src=@image style="width: 100px; height: 100px;">
                                     </a>

@@ -10,6 +10,7 @@
 *.userosscache
 *.sln.docstates
 .gitignore
+run.bat
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

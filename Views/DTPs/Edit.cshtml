@@ -12,13 +12,33 @@
     <form asp-action="Edit">
         <label asp-for="Number" class="control-label"></label>
         <input asp-for="Number" class="form-control" />
+        <span asp-validation-for="Number" class="text-danger"></span>
+        <br />
         <label asp-for="DM" class="control-label"></label>
         <input asp-for="DM" class="form-control" />
+        <span asp-validation-for="DM" class="text-danger"></span>
+        <br />
         <label asp-for="Name" class="control-label"></label>
         <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+        <br />
+        <label asp-for="Analyst" class="control-label"></label>
+        <input asp-for="Analyst" class="form-control" />
+        <br />
+        <label asp-for="Leader" class="control-label"></label>
+        <input asp-for="Leader" class="form-control" />
+        <br />
+        <label asp-for="Demandant" class="control-label"></label>
+        <input asp-for="Demandant" class="form-control" />
 
         <br />
-        <input type="submit" value="Save" class="btn btn-success"/>
+        <input type="submit" value="Save" class="btn btn-success" />
         <a asp-action="Index" class="btn bg-white">Cancel</a>
     </form>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,11 +1,22 @@
-﻿namespace DTP.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DTP.Models
 {
     public class DTPs
     {
         public int Id { get; set; }
+
+        [Required]
         public string Number { get; set; }
+
+        [Required]
         public string DM { get; set; }
+
+        [Required]
         public string Name { get; set; }
+        public string? Analyst { get; set; }
+        public string? Leader { get; set; }
+        public string? Demandant { get; set; }
 
         public DTPs()
         {
