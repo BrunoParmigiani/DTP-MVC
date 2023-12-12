@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DTP.Services;
 using DTP.Models;
+using DTP.Models.ViewModels;
 using DTP.Services.Exceptions;
 using System.Diagnostics;
 
@@ -101,16 +102,23 @@ namespace DTP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            await _sitesService.RemoveAsync(id);
-            return RedirectToAction(nameof(Details));
+            try
+            {
+                await _sitesService.RemoveAsync(id);
+                return RedirectToAction(nameof(Details));
+            }
+            catch (IntegrityException ex)
+            {
+                return RedirectToAction(nameof(Error), new { Message = ex.Message });
+            }
         }
 
         public IActionResult Error(string message)
         {
             var viewModel = new ErrorViewModel()
             {
-                Message = message,
-                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier,
+                Message = message
             };
 
             return View(viewModel);
