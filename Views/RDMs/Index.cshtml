@@ -1,0 +1,54 @@
+﻿@model DTP.Models.ViewModels.RDMsViewModel;
+
+@{
+    ViewData["Title"] = "RDMs";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+<br />
+
+<table class="table table-striped table-hover bg-light">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Number</th>
+            <th>Ticket</th>
+            <th>Required To</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model.ParentRDMs)
+    {
+        <tbody>
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.GetNumber()</td>
+                <td>@item.Ticket</td>
+                <td>@item.RequiredTo</td>
+            </tr>
+        </tbody>
+    }
+</table>
+
+<table class="table table-striped table-hover bg-light">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Number</th>
+            <th>Ticket</th>
+            <th>Required To</th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model.ChildrenRDMs)
+    {
+        <tbody>
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.GetNumber()</td>
+                <td>@item.Ticket</td>
+                <td>@item.RequiredTo</td>
+            </tr>
+        </tbody>
+    }
+</table>

@@ -22,14 +22,14 @@ namespace DTP.Controllers
             return View(list);
         }
 
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { Message = "Id not provided" });
             }
 
-            var obj = await _dtpsService.FindByIdAsync(id);
+            var obj = await _dtpsService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { Message = "Id not found" });

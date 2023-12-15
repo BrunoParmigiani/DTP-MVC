@@ -62,5 +62,44 @@ namespace DTP.Data
 
             _context.SaveChanges();
         }
+
+        public void SeedParentRDMs()
+        {
+            if (_context.ParentRDMs.Any())
+            {
+                return;
+            }
+
+            ParentRDM[] rdms =
+            {
+                new ParentRDM(1, 107, "Bruno", "Henrique", 0, "Firewall", 0, "ABC", false, "DTP.XXXXXX", "Title", "Desc", DateTime.Now),
+                new ParentRDM(2, 108, "Parmigiani", "Caetano", 0, "Firewall", 0, "ABC", false, "DTP.YYYYYY", "Title", "Desc", DateTime.Now)
+            };
+
+            _context.AddRange(rdms);
+
+            _context.SaveChanges();
+        }
+
+        public void SeedChildrenRDMs()
+        {
+            if (_context.ChildrenRDMs.Any())
+            {
+                return;
+            }
+
+            ParentRDM p1 = _context.ParentRDMs.Find(1);
+            ParentRDM p2 = _context.ParentRDMs.Find(2);
+
+            ChildrenRDM[] rdms =
+            {
+                new ChildrenRDM(3, 107, "Bruno", "Henrique", 0, "Firewall", 0, "ABC", false, "DTP.XXXXXX", "Title", "Desc", DateTime.Now, p1),
+                new ChildrenRDM(4, 108, "Parmigiani", "Caetano", 0, "Firewall", 0, "ABC", false, "DTP.YYYYYY", "Title", "Desc", DateTime.Now, p2)
+            };
+
+            _context.AddRange(rdms);
+
+            _context.SaveChanges();
+        }
     }
 }

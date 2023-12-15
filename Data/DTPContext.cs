@@ -16,5 +16,7 @@ namespace DTP.Data
 
         public DbSet<Sites> Sites { get; set; } = default!;
         public DbSet<DTPs> DTPs { get; set; } = default!;
+        public DbSet<ParentRDM> ParentRDMs { get; set; } = default!;
+        public DbSet<ChildrenRDM> ChildrenRDMs { get; set; } = default!;
     }
 }
