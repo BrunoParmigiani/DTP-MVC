@@ -24,6 +24,7 @@ using (var scope = app.Services.CreateScope())
     context.Database.EnsureCreated();
 
     SeedingService seedingService = new SeedingService(context);
+    seedingService.SeedParentRDMs();
     seedingService.SeedChildrenRDMs();
 }
 

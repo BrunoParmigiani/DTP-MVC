@@ -93,8 +93,8 @@ namespace DTP.Data
 
             ChildrenRDM[] rdms =
             {
-                new ChildrenRDM(3, 107, "Bruno", "Henrique", 0, "Firewall", 0, "ABC", false, "DTP.XXXXXX", "Title", "Desc", DateTime.Now, p1),
-                new ChildrenRDM(4, 108, "Parmigiani", "Caetano", 0, "Firewall", 0, "ABC", false, "DTP.YYYYYY", "Title", "Desc", DateTime.Now, p2)
+                new ChildrenRDM(3, 109, "Bruno", "Henrique", 0, "Firewall", 0, "ABC", false, "DTP.XXXXXX", "Title", "Desc", DateTime.Now, p1),
+                new ChildrenRDM(4, 110, "Parmigiani", "Caetano", 0, "Firewall", 0, "ABC", false, "DTP.YYYYYY", "Title", "Desc", DateTime.Now, p2)
             };
 
             _context.AddRange(rdms);
