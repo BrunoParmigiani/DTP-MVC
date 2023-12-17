@@ -70,13 +70,15 @@ namespace DTP.Data
                 return;
             }
 
+            DTPs dtp = _context.DTPs.Find(7);
+
             ParentRDM[] rdms =
             {
-                new ParentRDM(1, 107, "Bruno", "Henrique", 0, "Firewall", 0, "ABC", false, "DTP.XXXXXX", "Title", "Desc", DateTime.Now),
-                new ParentRDM(2, 108, "Parmigiani", "Caetano", 0, "Firewall", 0, "ABC", false, "DTP.YYYYYY", "Title", "Desc", DateTime.Now)
+                new ParentRDM(1, 107, "Bruno", "Henrique", 0, "Firewall", 0, "ABC", false, dtp, "Title", "Desc", DateTime.Now),
+                new ParentRDM(2, 108, "Parmigiani", "Caetano", 0, "Firewall", 0, "ABC", false, dtp, "Title", "Desc", DateTime.Now)
             };
 
-            _context.AddRange(rdms);
+            _context.ParentRDMs.AddRange(rdms);
 
             _context.SaveChanges();
         }
@@ -90,14 +92,15 @@ namespace DTP.Data
 
             ParentRDM p1 = _context.ParentRDMs.Find(1);
             ParentRDM p2 = _context.ParentRDMs.Find(2);
+            DTPs dtp = _context.DTPs.Find(7);
 
             ChildrenRDM[] rdms =
             {
-                new ChildrenRDM(3, 109, "Bruno", "Henrique", 0, "Firewall", 0, "ABC", false, "DTP.XXXXXX", "Title", "Desc", DateTime.Now, p1),
-                new ChildrenRDM(4, 110, "Parmigiani", "Caetano", 0, "Firewall", 0, "ABC", false, "DTP.YYYYYY", "Title", "Desc", DateTime.Now, p2)
+                new ChildrenRDM(1, 109, "Bruno", "Henrique", 0, "Firewall", 0, "ABC", false, dtp, "Title", "Desc", DateTime.Now, p1),
+                new ChildrenRDM(2, 110, "Parmigiani", "Caetano", 0, "Firewall", 0, "ABC", false, dtp, "Title", "Desc", DateTime.Now, p2)
             };
 
-            _context.AddRange(rdms);
+            _context.ChildrenRDMs.AddRange(rdms);
 
             _context.SaveChanges();
         }

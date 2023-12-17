@@ -13,7 +13,7 @@ namespace DTP.Models
         public RDMType Type { get; set; }
         public string System { get; set; }
         public bool Unavailable { get; set; }
-        public string Ticket { get; set; }
+        public DTPs Ticket { get; set; }
         public string Summary { get; set; }
         public string Description { get; set; }
         public DateTime RequiredTo { get; set; }
@@ -23,7 +23,7 @@ namespace DTP.Models
         {
         }
 
-        public RDM(int id, int? number, string user, string requester, RDMEnvironment environment, string category, RDMType type, string system, bool unavailable, string ticket, string summary, string description, DateTime requiredTo)
+        public RDM(int id, int? number, string user, string requester, RDMEnvironment environment, string category, RDMType type, string system, bool unavailable, DTPs ticket, string summary, string description, DateTime requiredTo)
         {
             Id = id;
             Number = number == null ? id : number;

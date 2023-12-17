@@ -17,6 +17,7 @@ namespace DTP.Models
         public string? Analyst { get; set; }
         public string? Leader { get; set; }
         public string? Demandant { get; set; }
+        public List<ParentRDM> ParentRDMs { get; set; } = new List<ParentRDM>();
 
         public DTPs()
         {
@@ -38,6 +39,16 @@ namespace DTP.Models
         public string GetFullName()
         {
             return $"DM.{DM} - {Name}";
+        }
+
+        public void AddRDM(ParentRDM obj)
+        {
+            ParentRDMs.Add(obj);
+        }
+
+        public void RemoveRDM(ParentRDM obj)
+        {
+            ParentRDMs.Remove(obj);
         }
     }
 }

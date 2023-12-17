@@ -3,6 +3,7 @@ using System;
 using DTP.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DTP.Migrations
 {
     [DbContext(typeof(DTPContext))]
-    partial class DTPContextModelSnapshot : ModelSnapshot
+    [Migration("20231217134817_Updated_DTPs_And_RDMs_Fields")]
+    partial class Updated_DTPs_And_RDMs_Fields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
