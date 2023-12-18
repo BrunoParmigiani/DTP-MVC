@@ -10,10 +10,12 @@ namespace DTP.Controllers
     public class DTPsController : Controller
     {
         private readonly DTPsService _dtpsService;
+        private readonly ParentRDMService _parentRDMService;
 
-        public DTPsController(DTPsService dtpsService)
+        public DTPsController(DTPsService dtpsService, ParentRDMService parentRDMService)
         {
             _dtpsService = dtpsService;
+            _parentRDMService = parentRDMService;
         }
 
         public async Task<IActionResult> Index()
@@ -34,6 +36,8 @@ namespace DTP.Controllers
             {
                 return RedirectToAction(nameof(Error), new { Message = "Id not found" });
             }
+
+            obj.ParentRDMs = await _parentRDMService.FindAllByDTPAsync(obj);
 
             return View(obj);
         }

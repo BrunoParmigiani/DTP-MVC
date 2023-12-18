@@ -1,4 +1,5 @@
-﻿using DTP.Models.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+using DTP.Models.Enums;
 
 namespace DTP.Models
 {
@@ -16,7 +17,11 @@ namespace DTP.Models
         public DTPs Ticket { get; set; }
         public string Summary { get; set; }
         public string Description { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm}")]
         public DateTime RequiredTo { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm}")]
         public DateTime? OpenDate { get; set; }
 
         public RDM()
@@ -40,6 +45,11 @@ namespace DTP.Models
             RequiredTo = requiredTo;
 
             OpenDate = DateTime.Now;
+        }
+
+        public string GetFullSummary()
+        {
+            return $"[DTP.{Ticket.Number}][DM.{Ticket.DM}][{Ticket.Name}] - {Summary}";
         }
     }
 }

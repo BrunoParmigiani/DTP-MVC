@@ -1,6 +1,7 @@
-﻿using DTP.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using DTP.Data;
 using DTP.Models;
-using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace DTP.Services
 {
@@ -45,6 +46,36 @@ namespace DTP.Services
             var obj = await _context.ParentRDMs.FindAsync(id);
             _context.ParentRDMs.Remove(obj);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<ChildrenRDM>> FindChildrenAsync(ParentRDM parent)
+        {
+            var children = await _context.ChildrenRDMs
+                .Where(child => child.Parent.Id == parent.Id)
+                .ToListAsync();
+
+            return children;
+        }
+
+        public async Task<List<ParentRDM>> FindParentsByDTPAsync(DTPs dtp)
+        {
+            var parents = await _context.ParentRDMs
+                .Where(parent => parent.Ticket.Id == dtp.Id)
+                .ToListAsync();
+
+            return parents;
+        }
+
+        public async Task<List<ParentRDM>> FindAllByDTPAsync(DTPs dtp)
+        {
+            var parents = await FindParentsByDTPAsync(dtp);
+
+            foreach (ParentRDM parent in parents)
+            {
+                parent.Children = await FindChildrenAsync(parent);
+            }
+
+            return parents;
         }
     }
 }

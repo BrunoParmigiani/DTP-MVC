@@ -19,14 +19,12 @@
 
     @foreach (var item in Model.ParentRDMs)
     {
-
         <tr>
             <td>@item.Id</td>
             <td>@item.Number</td>
-            <td>@item.Ticket</td>
+            <td>DTP.@item.Ticket.Number</td>
             <td>@item.RequiredTo</td>
         </tr>
-
     }
 </table>
 
