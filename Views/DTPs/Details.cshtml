@@ -62,22 +62,22 @@
                 @foreach (var Child in ParentRDM.Children)
                 {
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => ParentRDM.Number)</td>
-                        <td>@Html.DisplayFor(modelItem => ParentRDM.Summary)</td>
-                        <td>@Html.DisplayFor(modelItem => ParentRDM.User)</td>
-                        <td>@Html.DisplayFor(modelItem => ParentRDM.Requester)</td>
-                        <td>@Html.DisplayFor(modelItem => ParentRDM.Type)</td>
-                        <td>@Html.DisplayFor(modelItem => ParentRDM.RequiredTo)</td>
+                        <td>@Html.DisplayFor(modelItem => Child.Number)</td>
+                        <td>@Html.DisplayFor(modelItem => Child.Summary)</td>
+                        <td>@Html.DisplayFor(modelItem => Child.User)</td>
+                        <td>@Html.DisplayFor(modelItem => Child.Requester)</td>
+                        <td>@Html.DisplayFor(modelItem => Child.Type)</td>
+                        <td>@Html.DisplayFor(modelItem => Child.RequiredTo)</td>
                         <td>
-                            <a asp-action="" asp-area="" class="btn btn-outline-success">Edit</a>
-                            <a asp-action="" asp-area="" class="btn btn-outline-primary">Details</a>
-                            <a asp-action="" asp-area="" class="btn btn-outline-danger">Delete</a>
+                            <a asp-action="Edit" asp-controller="RDMs" asp-route-id="@Child.Id" class="btn btn-outline-success">Edit</a>
+                            <a asp-action="Details" asp-controller="RDMs" asp-route-id="@Child.Id" class="btn btn-outline-primary">Details</a>
+                            <a asp-action="Delete" asp-controller="RDMs" asp-route-id="@Child.Id" class="btn btn-outline-danger">Delete</a>
                         </td>
                     </tr>
                 }
 
                 <tr>
-                    <td><a asp-action="" asp-area="">New RDM</a></td>
+                    <td><a asp-action="CreateAssociated" asp-controller="RDMs" asp-route-dtpId="@Model.Id" asp-route-parentId="@ParentRDM.Id">New RDM</a></td>
                 </tr>
             </table>
         </div>

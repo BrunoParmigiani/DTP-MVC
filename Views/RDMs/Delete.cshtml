@@ -1,0 +1,14 @@
+﻿@model DTP.Models.ChildrenRDM;
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>@ViewData["Title"]</h1>
+<br />
+<hr />
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id"/>
+    <input type="submit" value="Delete" class="btn btn-danger"/>
+</form>

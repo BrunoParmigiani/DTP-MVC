@@ -72,7 +72,8 @@ namespace DTP.Services
 
             foreach (ParentRDM parent in parents)
             {
-                parent.Children = await FindChildrenAsync(parent);
+                var child = await FindChildrenAsync(parent);
+                parent.Children = child;
             }
 
             return parents;
