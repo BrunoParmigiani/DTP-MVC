@@ -1,0 +1,93 @@
+﻿@model DTP.Models.ViewModels.ParentFormViewModel;
+
+@{
+    ViewData["Title"] = "Create Parent";
+}
+
+<style>
+    .form-row {
+        display: flex;
+    }
+
+        .form-row > div {
+            margin-right: 10px;
+            padding-bottom: 20px;
+            width: 300px;
+        }
+</style>
+
+<h1>@ViewData["Title"]</h1>
+<br />
+
+<h2>RDM</h2>
+<hr />
+
+<div>
+    <form asp-action="CreateAssociated">
+        <div class="form-row">
+            <div>
+                <label asp-for="Parent.Number" class="control-label"></label>
+                <input asp-for="Parent.Number" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div>
+                <label asp-for="Parent.User" class="control-label"></label>
+                <input asp-for="Parent.User" class="form-control" />
+            </div>
+
+            <div>
+                <label asp-for="Parent.Requester" class="control-label"></label>
+                <input asp-for="Parent.Requester" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div>
+                <label asp-for="Parent.Environment" class="control-label"></label>
+                <input asp-for="Parent.Environment" class="form-control" />
+            </div>
+
+            <div>
+                <label asp-for="Parent.Category" class="control-label"></label>
+                <input asp-for="Parent.Category" class="form-control" />
+            </div>
+
+            <div>
+                <label asp-for="Parent.Type" class="control-label"></label>
+                <input asp-for="Parent.Type" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div>
+                <label asp-for="Parent.System" class="control-label"></label>
+                <input asp-for="Parent.System" class="form-control" />
+            </div>
+
+            <div>
+                <label asp-for="Parent.Unavailable" class="control-label"></label>
+                <input asp-for="Parent.Unavailable" type="text" class="form-control" />
+            </div>
+        </div>
+
+        <label asp-for="Parent.Summary" class="control-label"></label>
+        <input asp-for="Parent.Summary" class="form-control" />
+
+        <label asp-for="Parent.Description" class="control-label"></label>
+        <textarea asp-for="Parent.Description" class="form-control" style="height: 300px;"></textarea>
+
+        <div class="form-row">
+            <div>
+                <label asp-for="Parent.RequiredTo" class="control-label"></label>
+                <input asp-for="Parent.RequiredTo" class="form-control" />
+            </div>
+        </div>
+
+        <br />
+
+        <input asp-route-dtpId="@Model.DTPId" type="submit" value="Create" class="btn btn-success" />
+        <a asp-action="Details" asp-controller="DTPs" asp-route-id="7" class="btn bg-white">Cancel</a>
+    </form>
+</div>

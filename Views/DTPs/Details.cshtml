@@ -42,6 +42,13 @@
 
 <br />
 
+<div class="d-flex justify-content-between">
+    <h2>RDMs</h2>
+    <a asp-action="CreateParent" asp-controller="RDMs" asp-route-dtpId="@Model.Id" class="btn btn-success">New parent RDM</a>
+</div>
+<hr />
+<br />
+
 <div>
     @foreach (var ParentRDM in Model.ParentRDMs)
     {
@@ -71,13 +78,13 @@
                         <td>
                             <a asp-action="Edit" asp-controller="RDMs" asp-route-id="@Child.Id" class="btn btn-outline-success">Edit</a>
                             <a asp-action="Details" asp-controller="RDMs" asp-route-id="@Child.Id" class="btn btn-outline-primary">Details</a>
-                            <a asp-action="Delete" asp-controller="RDMs" asp-route-id="@Child.Id" class="btn btn-outline-danger">Delete</a>
+                            <a asp-action="DeleteChild" asp-controller="RDMs" asp-route-id="@Child.Id" class="btn btn-outline-danger">Delete</a>
                         </td>
                     </tr>
                 }
 
                 <tr>
-                    <td><a asp-action="CreateAssociated" asp-controller="RDMs" asp-route-dtpId="@Model.Id" asp-route-parentId="@ParentRDM.Id">New RDM</a></td>
+                    <td><a asp-action="CreateChild" asp-controller="RDMs" asp-route-dtpId="@Model.Id" asp-route-parentId="@ParentRDM.Id" class="btn btn-success">New RDM</a></td>
                 </tr>
             </table>
         </div>

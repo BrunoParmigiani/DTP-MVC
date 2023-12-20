@@ -26,7 +26,31 @@ namespace DTP.Controllers
             return View();
         }
 
-        public async Task<IActionResult> CreateAssociated(int? dtpId, int? parentId)
+        // RDMs create
+
+        public IActionResult CreateParent(int? dtpId)
+        {
+            var viewModel = new ParentFormViewModel
+            {
+                DTPId = dtpId.Value
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateParent(ParentRDM parent, int dtpId)
+        {
+            parent.Ticket = await _dtpsService.FindByIdAsync(dtpId);
+            parent.OpenDate = DateTime.Now;
+
+            await _parentRDMService.InsertAsync(parent);
+
+            return RedirectToAction(nameof(Index), "DTPs");
+        }
+
+        public IActionResult CreateChild(int? dtpId, int? parentId)
         {
             var viewModel = new ChildFormViewModel
             {
@@ -39,32 +63,34 @@ namespace DTP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateAssociated(ChildrenRDM child, int dtpId, int parentId)
+        public async Task<IActionResult> CreateChild(ChildrenRDM child, int dtpId, int parentId)
         {
             child.Ticket = await _dtpsService.FindByIdAsync(dtpId);
             child.Parent = await _parentRDMService.FindByIdAsync(parentId);
             child.OpenDate = DateTime.Now;
-
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine(child);
-            Console.ForegroundColor = ConsoleColor.Gray;
 
             await _childrenRDMService.InsertAsync(child);
 
             return RedirectToAction(nameof(Index), "DTPs");
         }
 
+        // RDMs details
+
         public async Task<IActionResult> Details(int? id)
         {
             return View();
         }
+
+        // RDMs edit
 
         public async Task<IActionResult> Edit()
         {
             return View();
         }
 
-        public async Task<IActionResult> Delete(int? id)
+        // RDMs delete
+
+        public async Task<IActionResult> DeleteChild(int? id)
         {
             var child = await _childrenRDMService.FindByIdAsync(id.Value);
 
@@ -73,7 +99,7 @@ namespace DTP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteChild(int id)
         {
             await _childrenRDMService.RemoveAsync(id);
 
