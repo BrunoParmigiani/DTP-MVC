@@ -24,20 +24,20 @@ namespace DTP.Services
             return await _context.ParentRDMs.FindAsync(id);
         }
 
-        public async Task InsertAsync(ParentRDM obj)
+        public async Task InsertAsync(ParentRDM parent)
         {
-            _context.ParentRDMs.Add(obj);
+            _context.ParentRDMs.Add(parent);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(ParentRDM obj)
+        public async Task UpdateAsync(ParentRDM parent)
         {
-            if (!_context.ParentRDMs.Any(x => x.Id == obj.Id))
+            if (!_context.ParentRDMs.Any(x => x.Id == parent.Id))
             {
                 return;
             }
 
-            _context.ParentRDMs.Update(obj);
+            _context.ParentRDMs.Update(parent);
             await _context.SaveChangesAsync();
         }
 

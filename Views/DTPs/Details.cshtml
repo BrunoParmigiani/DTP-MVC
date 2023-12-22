@@ -53,7 +53,14 @@
     @foreach (var ParentRDM in Model.ParentRDMs)
     {
         <div>
-            <h4>RDM @ParentRDM.Number - @ParentRDM.Summary</h4>
+            <div class="d-flex justify-content-between">
+                <h4>RDM @ParentRDM.Number - @ParentRDM.Summary</h4>
+                <div>
+                    <a asp-action="EditParent" asp-controller="RDMs" asp-route-dtpId="@Model.Id" asp-route-parentId="@ParentRDM.Id" class="btn btn-success">Edit</a>
+                    <a asp-action="DetailsParent" asp-controller="RDMs" asp-route-dtpId="@Model.Id" asp-route-parentId="@ParentRDM.Id" class="btn btn-primary">Details</a>
+                    <a asp-action="DeleteParent" asp-controller="RDMs" asp-route-dtpId="@Model.Id" asp-route-parentId="@ParentRDM.Id" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
 
             <table class="table table-striped table-hover bg-light">
                 <tr>
@@ -76,9 +83,9 @@
                         <td>@Html.DisplayFor(modelItem => Child.Type)</td>
                         <td>@Html.DisplayFor(modelItem => Child.RequiredTo)</td>
                         <td>
-                            <a asp-action="Edit" asp-controller="RDMs" asp-route-id="@Child.Id" class="btn btn-outline-success">Edit</a>
-                            <a asp-action="Details" asp-controller="RDMs" asp-route-id="@Child.Id" class="btn btn-outline-primary">Details</a>
-                            <a asp-action="DeleteChild" asp-controller="RDMs" asp-route-id="@Child.Id" class="btn btn-outline-danger">Delete</a>
+                            <a asp-action="EditChild" asp-controller="RDMs" asp-route-dtpId="@Model.Id" asp-route-childId="@Child.Id" class="btn btn-outline-success">Edit</a>
+                            <a asp-action="DetailsChild" asp-controller="RDMs" asp-route-dtpId="@Model.Id" asp-route-childId="@Child.Id" class="btn btn-outline-primary">Details</a>
+                            <a asp-action="DeleteChild" asp-controller="RDMs" asp-route-dtpId="@Model.Id" asp-route-childId="@Child.Id" class="btn btn-outline-danger">Delete</a>
                         </td>
                     </tr>
                 }

@@ -90,9 +90,27 @@ namespace DTP.Controllers
 
         // RDMs delete
 
-        public async Task<IActionResult> DeleteChild(int? id)
+        public async Task<IActionResult> DeleteParent(int? dtpId, int? parentId)
         {
-            var child = await _childrenRDMService.FindByIdAsync(id.Value);
+            var parent = await _parentRDMService.FindByIdAsync(parentId.Value);
+            parent.Ticket = await _dtpsService.FindByIdAsync(dtpId.Value);
+
+            return View(parent);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteParent(int id)
+        {
+            await _parentRDMService.RemoveAsync(id);
+
+            return RedirectToAction(nameof(Details), "DTPs");
+        }
+
+        public async Task<IActionResult> DeleteChild(int? dtpId, int? childId)
+        {
+            var child = await _childrenRDMService.FindByIdAsync(childId.Value);
+            child.Ticket = await _dtpsService.FindByIdAsync(dtpId.Value);
 
             return View(child);
         }
