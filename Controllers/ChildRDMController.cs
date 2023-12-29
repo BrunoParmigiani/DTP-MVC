@@ -43,6 +43,35 @@ namespace DTP.Controllers
             return RedirectToAction("Index", "DTPs");
         }
 
+        public async Task<IActionResult> Details(int? dtpId, int? childId)
+        {
+            var child = await _childrenRDMService.FindByIdAsync(childId.Value);
+            child.Ticket = await _dtpsService.FindByIdAsync(dtpId.Value);
+
+            return View(child);
+        }
+
+        public async Task<IActionResult> Edit(int? dtpId, int? childId, int? parentId)
+        {
+            var child = await _childrenRDMService.FindByIdAsync(childId.Value);
+            child.Parent = await _parentRDMService.FindByIdAsync(parentId.Value);
+            child.Ticket = await _dtpsService.FindByIdAsync(dtpId.Value);
+
+            return View(child);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(ChildrenRDM child, int dtpId, int parentId)
+        {
+            child.Parent = await _parentRDMService.FindByIdAsync(parentId);
+            child.Ticket = await _dtpsService.FindByIdAsync(dtpId);
+
+            await _childrenRDMService.UpdateAsync(child);
+
+            return RedirectToAction("Index", "DTPs");
+        }
+
         public async Task<IActionResult> Delete(int? dtpId, int? childId)
         {
             var child = await _childrenRDMService.FindByIdAsync(childId.Value);

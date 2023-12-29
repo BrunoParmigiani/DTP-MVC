@@ -1,0 +1,89 @@
+﻿@model DTP.Models.ChildrenRDM;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@ViewData["Title"]</h1>
+<h3>RDM @Model.Number</h3>
+<hr />
+<br />
+
+<style>
+    .form-row {
+        display: flex;
+    }
+
+        .form-row > div {
+            margin-right: 10px;
+            padding-bottom: 20px;
+            width: 300px;
+        }
+</style>
+
+<div>
+    <div class="form-row">
+        <div>
+            <label asp-for="@Model.User" class="control-label"></label>
+            <input asp-for="@Model.User" readonly class="form-control" />
+        </div>
+
+        <div>
+            <label asp-for="@Model.Requester" class="control-label"></label>
+            <input asp-for="@Model.Requester" readonly class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div>
+            <label asp-for="@Model.Environment" class="control-label"></label>
+            <input asp-for="@Model.Environment" readonly class="form-control" />
+        </div>
+
+        <div>
+            <label asp-for="@Model.Category" class="control-label"></label>
+            <input asp-for="@Model.Category" readonly class="form-control" />
+        </div>
+
+        <div>
+            <label asp-for="@Model.Type" class="control-label"></label>
+            <input asp-for="@Model.Type" readonly class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div>
+            <label asp-for="@Model.System" class="control-label"></label>
+            <input asp-for="@Model.System" readonly class="form-control" />
+        </div>
+
+        <div>
+            <label asp-for="@Model.Unavailable" class="control-label"></label>
+            <input asp-for="@Model.Unavailable" readonly type="text" class="form-control" />
+        </div>
+    </div>
+
+    <label asp-for="@Model.Summary" class="control-label"></label>
+    <input asp-for="@Model.Summary" value="@Model.GetFullSummary()" readonly class="form-control" />
+
+    <label asp-for="@Model.Description" class="control-label"></label>
+    <textarea asp-for="@Model.Description" readonly class="form-control" style="height: 300px;"></textarea>
+
+    <div class="form-row">
+        <div>
+            <label asp-for="@Model.RequiredTo" class="control-label"></label>
+            <input asp-for="@Model.RequiredTo" readonly class="form-control" />
+        </div>
+
+        <div>
+            <label asp-for="@Model.OpenDate" class="control-label"></label>
+            <input asp-for="@Model.OpenDate" readonly class="form-control" />
+        </div>
+    </div>
+
+    <br />
+</div>
+
+<div>
+    <a asp-action="Details" asp-controller="DTPs" asp-route-id="@Model.Ticket.Id" class="btn bg-white">Return</a>
+</div>

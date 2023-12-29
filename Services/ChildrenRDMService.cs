@@ -31,11 +31,6 @@ namespace DTP.Services
 
         public async Task UpdateAsync(ChildrenRDM obj)
         {
-            if (!_context.ChildrenRDMs.Any(x => x.Id == obj.Id))
-            {
-                return;
-            }
-
             _context.ChildrenRDMs.Update(obj);
             await _context.SaveChangesAsync();
         }

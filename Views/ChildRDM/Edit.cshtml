@@ -1,0 +1,97 @@
+﻿@model DTP.Models.ChildrenRDM;
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>@ViewData["Title"]</h1>
+<h3>RDM @Model.Number</h3>
+<hr />
+<br />
+
+<style>
+    .form-row {
+        display: flex;
+    }
+
+        .form-row > div {
+            margin-right: 10px;
+            padding-bottom: 20px;
+            width: 300px;
+        }
+</style>
+
+<form asp-action="Edit">
+    <div class="form-row">
+        <input asp-for="Id" type="hidden"/>
+        
+        <div>
+            <label asp-for="Number" class="control-label"></label>
+            <input asp-for="Number" class="form-control"/>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div>
+            <label asp-for="User" class="control-label"></label>
+            <input asp-for="User" class="form-control" />
+        </div>
+
+        <div>
+            <label asp-for="Requester" class="control-label"></label>
+            <input asp-for="Requester" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div>
+            <label asp-for="Environment" class="control-label"></label>
+            <input asp-for="Environment" class="form-control" />
+        </div>
+
+        <div>
+            <label asp-for="Category" class="control-label"></label>
+            <input asp-for="Category" class="form-control" />
+        </div>
+
+        <div>
+            <label asp-for="Type" class="control-label"></label>
+            <input asp-for="Type" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div>
+            <label asp-for="System" class="control-label"></label>
+            <input asp-for="System" class="form-control" />
+        </div>
+
+        <div>
+            <label asp-for="Unavailable" class="control-label"></label>
+            <input asp-for="Unavailable" type="text" class="form-control" />
+        </div>
+    </div>
+
+    <label asp-for="Summary" class="control-label"></label>
+    <input asp-for="Summary" class="form-control" />
+
+    <label asp-for="Description" class="control-label"></label>
+    <textarea asp-for="Description" class="form-control" style="height: 300px;"></textarea>
+
+    <div class="form-row">
+        <div>
+            <label asp-for="RequiredTo" class="control-label"></label>
+            <input asp-for="RequiredTo" class="form-control" />
+        </div>
+
+        <div>
+            <label asp-for="OpenDate" class="control-label"></label>
+            <input asp-for="OpenDate" class="form-control" />
+        </div>
+    </div>
+
+    <br />
+
+    <input asp-route-dtpId="@Model.Ticket.Id" asp-route-parentId="@Model.Parent.Id" type="submit" value="Save" class="btn btn-success" />
+    <a asp-action="Details" asp-controller="DTPs" asp-route-id="@Model.Ticket.Id" class="btn bg-white">Cancel</a>
+</form>

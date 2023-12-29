@@ -83,7 +83,7 @@
                         <td>@Html.DisplayFor(modelItem => Child.Type)</td>
                         <td>@Html.DisplayFor(modelItem => Child.RequiredTo)</td>
                         <td>
-                            <a asp-action="Edit" asp-controller="ChildRDM" asp-route-dtpId="@Model.Id" asp-route-childId="@Child.Id" class="btn btn-outline-success">Edit</a>
+                            <a asp-action="Edit" asp-controller="ChildRDM" asp-route-dtpId="@Model.Id" asp-route-childId="@Child.Id" asp-route-parentId="@ParentRDM.Id" class="btn btn-outline-success">Edit</a>
                             <a asp-action="Details" asp-controller="ChildRDM" asp-route-dtpId="@Model.Id" asp-route-childId="@Child.Id" class="btn btn-outline-primary">Details</a>
                             <a asp-action="Delete" asp-controller="ChildRDM" asp-route-dtpId="@Model.Id" asp-route-childId="@Child.Id" class="btn btn-outline-danger">Delete</a>
                         </td>
