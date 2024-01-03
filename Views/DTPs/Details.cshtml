@@ -57,7 +57,7 @@
                 <h4>RDM @ParentRDM.Number - @ParentRDM.Summary</h4>
                 <div>
                     <a asp-action="Edit" asp-controller="ParentRDM" asp-route-dtpId="@Model.Id" asp-route-parentId="@ParentRDM.Id" class="btn btn-success">Edit</a>
-                    <a asp-action="Details" asp-controller="ParentRDM" asp-route-dtpId="@Model.Id" asp-route-parentId="@ParentRDM.Id" class="btn btn-primary">Details</a>
+                    <a asp-action="Details" asp-controller="ParentRDM" asp-route-dtpId="@Model.Id" asp-route-parentId="@ParentRDM.Id" asp-route-dtpId="@ParentRDM.Ticket.Id" class="btn btn-primary">Details</a>
                     <a asp-action="Delete" asp-controller="ParentRDM" asp-route-dtpId="@Model.Id" asp-route-parentId="@ParentRDM.Id" class="btn btn-danger">Delete</a>
                 </div>
             </div>
