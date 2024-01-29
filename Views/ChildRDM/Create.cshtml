@@ -1,4 +1,5 @@
 ﻿@model DTP.Models.ViewModels.ChildFormViewModel;
+@using DTP.Models.Enums;
 
 @{
     ViewData["Title"] = "Create Child";
@@ -46,7 +47,15 @@
         <div class="form-row">
             <div>
                 <label asp-for="Child.Environment" class="control-label"></label>
-                <input asp-for="Child.Environment" class="form-control" />
+                <select asp-for="Child.Environment" class="form-control">
+                    @{
+                        for (int i = 0; i < Model.Environments; i++)
+                        {
+                            RDMEnvironment env = (RDMEnvironment)i;
+                            <option value="@i">@env</option>
+                        }
+                    }
+                </select>
             </div>
 
             <div>
@@ -56,7 +65,15 @@
 
             <div>
                 <label asp-for="Child.Type" class="control-label"></label>
-                <input asp-for="Child.Type" class="form-control" />
+                <select asp-for="Child.Type" class="form-control">
+                    @{
+                        for (int i = 0; i < Model.RDMTypes; i++)
+                        {
+                            RDMType env = (RDMType)i;
+                            <option value="@i">@env</option>
+                        }
+                    }
+                </select>
             </div>
         </div>
 
@@ -68,7 +85,10 @@
 
             <div>
                 <label asp-for="Child.Unavailable" class="control-label"></label>
-                <input asp-for="Child.Unavailable" type="text" class="form-control" />
+                <select asp-for="Child.Unavailable" class="form-control">
+                    <option value="False">False</option>
+                    <option value="True">True</option>
+                </select>
             </div>
         </div>
 

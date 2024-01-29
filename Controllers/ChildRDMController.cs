@@ -57,7 +57,14 @@ namespace DTP.Controllers
             child.Parent = await _parentRDMService.FindByIdAsync(parentId.Value);
             child.Ticket = await _dtpsService.FindByIdAsync(dtpId.Value);
 
-            return View(child);
+            var viewModel = new ChildFormViewModel
+            {
+                DTPId = dtpId.Value,
+                ParentId = parentId.Value,
+                Child = child
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]

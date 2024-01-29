@@ -1,11 +1,12 @@
-﻿@model DTP.Models.ChildrenRDM;
+﻿@model DTP.Models.ViewModels.ChildFormViewModel;
+@using DTP.Models.Enums;
 
 @{
     ViewData["Title"] = "Edit";
 }
 
 <h1>@ViewData["Title"]</h1>
-<h3>RDM @Model.Number</h3>
+<h3>RDM @Model.Child.Number</h3>
 <hr />
 <br />
 
@@ -23,75 +24,94 @@
 
 <form asp-action="Edit">
     <div class="form-row">
-        <input asp-for="Id" type="hidden"/>
+        <input asp-for="Child.Id" type="hidden"/>
         
         <div>
-            <label asp-for="Number" class="control-label"></label>
-            <input asp-for="Number" class="form-control"/>
+            <label asp-for="Child.Number" class="control-label"></label>
+            <input asp-for="Child.Number" class="form-control"/>
         </div>
     </div>
 
     <div class="form-row">
         <div>
-            <label asp-for="User" class="control-label"></label>
-            <input asp-for="User" class="form-control" />
+            <label asp-for="Child.User" class="control-label"></label>
+            <input asp-for="Child.User" class="form-control" />
         </div>
 
         <div>
-            <label asp-for="Requester" class="control-label"></label>
-            <input asp-for="Requester" class="form-control" />
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div>
-            <label asp-for="Environment" class="control-label"></label>
-            <input asp-for="Environment" class="form-control" />
-        </div>
-
-        <div>
-            <label asp-for="Category" class="control-label"></label>
-            <input asp-for="Category" class="form-control" />
-        </div>
-
-        <div>
-            <label asp-for="Type" class="control-label"></label>
-            <input asp-for="Type" class="form-control" />
+            <label asp-for="Child.Requester" class="control-label"></label>
+            <input asp-for="Child.Requester" class="form-control" />
         </div>
     </div>
 
     <div class="form-row">
         <div>
-            <label asp-for="System" class="control-label"></label>
-            <input asp-for="System" class="form-control" />
+            <label asp-for="Child.Environment" class="control-label"></label>
+            <select asp-for="Child.Environment" class="form-control">
+                @{
+                    for (int i = 0; i < Model.Environments; i++)
+                    {
+                        RDMEnvironment env = (RDMEnvironment)i;
+                        <option value="@i">@env</option>
+                    }
+                }
+            </select>
         </div>
 
         <div>
-            <label asp-for="Unavailable" class="control-label"></label>
-            <input asp-for="Unavailable" type="text" class="form-control" />
+            <label asp-for="Child.Category" class="control-label"></label>
+            <input asp-for="Child.Category" class="form-control" />
+        </div>
+
+        <div>
+            <label asp-for="Child.Type" class="control-label"></label>
+            <select asp-for="Child.Type" class="form-control">
+                @{
+                    for (int i = 0; i < Model.RDMTypes; i++)
+                    {
+                        RDMType env = (RDMType)i;
+                        <option value="@i">@env</option>
+                    }
+                }
+            </select>
         </div>
     </div>
 
-    <label asp-for="Summary" class="control-label"></label>
-    <input asp-for="Summary" class="form-control" />
-
-    <label asp-for="Description" class="control-label"></label>
-    <textarea asp-for="Description" class="form-control" style="height: 300px;"></textarea>
-
     <div class="form-row">
         <div>
-            <label asp-for="RequiredTo" class="control-label"></label>
-            <input asp-for="RequiredTo" class="form-control" />
+            <label asp-for="Child.System" class="control-label"></label>
+            <input asp-for="Child.System" class="form-control" />
         </div>
 
         <div>
-            <label asp-for="OpenDate" class="control-label"></label>
-            <input asp-for="OpenDate" class="form-control" />
+            <label asp-for="Child.Unavailable" class="control-label"></label>
+            <select asp-for="Child.Unavailable" class="form-control">
+                <option value="False">False</option>
+                <option value="True">True</option>
+            </select>
+        </div>
+    </div>
+
+    <label asp-for="Child.Summary" class="control-label"></label>
+    <input asp-for="Child.Summary" class="form-control" />
+
+    <label asp-for="Child.Description" class="control-label"></label>
+    <textarea asp-for="Child.Description" class="form-control" style="height: 300px;"></textarea>
+
+    <div class="form-row">
+        <div>
+            <label asp-for="Child.RequiredTo" class="control-label"></label>
+            <input asp-for="Child.RequiredTo" class="form-control" />
+        </div>
+
+        <div>
+            <label asp-for="Child.OpenDate" class="control-label"></label>
+            <input asp-for="Child.OpenDate" class="form-control" />
         </div>
     </div>
 
     <br />
 
-    <input asp-route-dtpId="@Model.Ticket.Id" asp-route-parentId="@Model.Parent.Id" type="submit" value="Save" class="btn btn-success" />
-    <a asp-action="Details" asp-controller="DTPs" asp-route-id="@Model.Ticket.Id" class="btn bg-white">Cancel</a>
+    <input asp-route-dtpId="@Model.DTPId" asp-route-parentId="@Model.ParentId" type="submit" value="Save" class="btn btn-success" />
+    <a asp-action="Details" asp-controller="DTPs" asp-route-id="@Model.DTPId" class="btn bg-white">Cancel</a>
 </form>

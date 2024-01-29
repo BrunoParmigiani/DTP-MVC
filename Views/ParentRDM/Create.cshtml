@@ -1,4 +1,5 @@
 ﻿@model DTP.Models.ViewModels.ParentFormViewModel;
+@using DTP.Models.Enums;
 
 @{
     ViewData["Title"] = "Create Parent";
@@ -46,7 +47,15 @@
         <div class="form-row">
             <div>
                 <label asp-for="Parent.Environment" class="control-label"></label>
-                <input asp-for="Parent.Environment" class="form-control" />
+                <select asp-for="Parent.Environment" class="form-control">
+                    @{
+                        for (int i = 0; i < Model.Environments; i++)
+                        {
+                            RDMEnvironment env = (RDMEnvironment)i;
+                            <option value="@i">@env</option>
+                        }
+                    }
+                </select>
             </div>
 
             <div>
@@ -56,7 +65,15 @@
 
             <div>
                 <label asp-for="Parent.Type" class="control-label"></label>
-                <input asp-for="Parent.Type" class="form-control" />
+                <select asp-for="Parent.Type" class="form-control">
+                    @{
+                        for (int i = 0; i < Model.RDMTypes; i++)
+                        {
+                            RDMType env = (RDMType)i;
+                            <option value="@i">@env</option>
+                        }
+                    }
+                </select>
             </div>
         </div>
 
@@ -68,7 +85,10 @@
 
             <div>
                 <label asp-for="Parent.Unavailable" class="control-label"></label>
-                <input asp-for="Parent.Unavailable" type="text" class="form-control" />
+                <select asp-for="Parent.Unavailable" class="form-control">
+                    <option value="False">False</option>
+                    <option value="True">True</option>
+                </select>
             </div>
         </div>
 

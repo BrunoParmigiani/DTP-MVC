@@ -52,9 +52,14 @@ namespace DTP.Controllers
         public async Task<IActionResult> Edit(int? dtpId, int? parentId)
         {
             var parent = await _parentRDMService.FindByIdAsync(parentId.Value);
-            parent.Ticket = await _dtpsService.FindByIdAsync(dtpId.Value);
 
-            return View(parent);
+            var viewModel = new ParentFormViewModel
+            {
+                DTPId = dtpId.Value,
+                Parent = parent
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
