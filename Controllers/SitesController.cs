@@ -28,14 +28,14 @@ namespace DTP.Controllers
             return View(list);
         }
 
-        public IActionResult Create() // [GET] Page to be rendered
+        public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Create(Sites site) // [POST] Insertion method
+        public async Task<IActionResult> Create(Sites site)
         {
             await _sitesService.InsertAsync(site);
             return RedirectToAction(nameof(Index));
