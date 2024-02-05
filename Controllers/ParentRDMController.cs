@@ -22,7 +22,7 @@ namespace DTP.Controllers
         {
             if (dtpId == null)
             {
-                return RedirectToAction(nameof(Error), new { Message = "A DTP must be assigned to a RDM"});
+                return RedirectToAction(nameof(Error), new { Message = "Id not provided"});
             }
 
             var dtp = await _dtpsService.FindByIdAsync(dtpId.Value);
