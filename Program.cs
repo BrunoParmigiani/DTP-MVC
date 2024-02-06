@@ -5,8 +5,7 @@ using DTP.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DTPContext>(options =>
-    options.UseMySql(builder.Configuration.GetConnectionString("DTPContext"),
-        new MySqlServerVersion(new Version(8, 0, 0))));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DTPContext")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -23,9 +22,11 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<DTPContext>();
     context.Database.EnsureCreated();
 
-    SeedingService seedingService = new SeedingService(context);
+    /*SeedingService seedingService = new SeedingService(context);
+    seedingService.SeedSites();
+    seedingService.SeedDTPs();
     seedingService.SeedParentRDMs();
-    seedingService.SeedChildrenRDMs();
+    seedingService.SeedChildrenRDMs();*/
 }
 
 // Configure the HTTP request pipeline.
