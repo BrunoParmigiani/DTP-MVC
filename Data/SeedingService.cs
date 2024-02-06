@@ -20,19 +20,19 @@ namespace DTP.Data
 
             Sites[] sites =
             {
-                new Sites(1, "DIPD", "dipd.png", "https://dataprevrj.sharepoint.com/sites/DIPD/SitePages/CollabHome.aspx?OR=Teams-HL&CT=1692622287978&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiIyNy8yMzA3MDMwNzM0NiIsIkhhc0ZlZGVyYXRlZFVzZXIiOmZhbHNlfQ%3D%3D"),
-                new Sites(2, "Email", "owa.png", "https://owa.dataprev.gov.br"),
-                new Sites(3, "SDM", "logo.png", "https://owa.dataprev.gov.br"),
-                new Sites(4, "Clarity", "clarity.png", "https://ppm.dataprev.gov.br/pm/#/menuLinks"),
-                new Sites(5, "Pronto", "pronto.png", "https://pronto.dataprev.gov.br/sp"),
-                new Sites(6, "Knowbe4", "kb4.png", "https://training.knowbe4.com/learner/index.html#/dashboard"),
-                new Sites(7, "SisGF", "sisgf.png", "https://www-sisgf/SisGF/faces/pages/index.xhtml"),
-                new Sites(8, "Datafone", "datafone.png", "http://www-datafone.prevnet/pesquisas/pornome.php"),
-                new Sites(9, "SGPe", "sgpe.png", "https://www-sgpe/SGPe/efetuarLogin.do?evento=entrar"),
-                new Sites(10, "Conexão", "cx.png", "https://www-conexao/"),
-                new Sites(11, "e-Doc", "edoc.png", "https://edoc.dataprev.gov.br/pages/modulos/activiti/inbox.xhtml"),
-                new Sites(12, "Padrão TIC", "tic.png", "https://www-padraotic/catalogo-tecnologico/"),
-                new Sites(13, "Painel DEGO", "dego.png", "https://www-paineldegs/QvAJAXZfc/opendoc.htm?document=dataprev%5Cp_degs.qvw&host=CLUSTER_QVS_PRODUCAO")
+                new Sites { Name = "DIPD", Image = "dipd.png", Link = "https://dataprevrj.sharepoint.com/sites/DIPD/SitePages/CollabHome.aspx?OR=Teams-HL&CT=1692622287978&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiIyNy8yMzA3MDMwNzM0NiIsIkhhc0ZlZGVyYXRlZFVzZXIiOmZhbHNlfQ%3D%3D" },
+                new Sites { Name = "Email", Image = "owa.png", Link = "https://owa.dataprev.gov.br" },
+                new Sites { Name = "SDM", Image = "logo.png", Link = "https://owa.dataprev.gov.br" },
+                new Sites { Name = "Clarity", Image = "clarity.png", Link = "https://ppm.dataprev.gov.br/pm/#/menuLinks" },
+                new Sites { Name = "Pronto", Image = "pronto.png", Link = "https://pronto.dataprev.gov.br/sp" },
+                new Sites { Name = "Knowbe4", Image = "kb4.png", Link = "https://training.knowbe4.com/learner/index.html#/dashboard" },
+                new Sites { Name = "SisGF", Image = "sisgf.png", Link = "https://www-sisgf/SisGF/faces/pages/index.xhtml" },
+                new Sites { Name = "Datafone", Image = "datafone.png", Link = "http://www-datafone.prevnet/pesquisas/pornome.php" },
+                new Sites { Name = "SGPe", Image = "sgpe.png", Link = "https://www-sgpe/SGPe/efetuarLogin.do?evento=entrar" },
+                new Sites { Name = "Conexão", Image = "cx.png", Link = "https://www-conexao/" },
+                new Sites { Name = "e-Doc", Image = "edoc.png", Link = "https://edoc.dataprev.gov.br/pages/modulos/activiti/inbox.xhtml" },
+                new Sites { Name = "Padrão TIC", Image = "tic.png", Link = "https://www-padraotic/catalogo-tecnologico/" },
+                new Sites { Name = "Painel DEGO", Image = "dego.png", Link = "https://www-paineldegs/QvAJAXZfc/opendoc.htm?document=dataprev%5Cp_degs.qvw&host=CLUSTER_QVS_PRODUCAO" }
             };
 
             _context.AddRange(sites);
@@ -49,13 +49,13 @@ namespace DTP.Data
 
             DTPs[] dtps =
             {
-                new DTPs(1, "083655", "202291", "Migração de base de DEV do TCEII"),
-                new DTPs(2, "083676", "202307", "Ajustes de Não Conformidades no ambiente P500"),
-                new DTPs(3, "083693", "202317", "Migração de base de DEV do eSocial e eSocial Cnis"),
-                new DTPs(4, "083722", "202339", "Migração da base dos formulários dinâmicos"),
-                new DTPs(5, "083717", "202338", "Migração de base de DEV do e-SISREC"),
-                new DTPs(6, "083723", "202352", "Migração de base de DEV do SERIS e SIDAT"),
-                new DTPs(7, "083733", "202366", "Criação de ambiente de Teste de Restore no DCRJ, DCDF e DCSP: AVAMAR")
+                new DTPs { Number = "083655", DM = "202291", Name = "Migração de base de DEV do TCEII" },
+                new DTPs { Number = "083676", DM = "202307", Name = "Ajustes de Não Conformidades no ambiente P500" },
+                new DTPs { Number = "083693", DM = "202317", Name = "Migração de base de DEV do eSocial e eSocial Cnis" },
+                new DTPs { Number = "083722", DM = "202339", Name = "Migração da base dos formulários dinâmicos" },
+                new DTPs { Number = "083717", DM = "202338", Name = "Migração de base de DEV do e-SISREC" },
+                new DTPs { Number = "083723", DM = "202352", Name = "Migração de base de DEV do SERIS e SIDAT" },
+                new DTPs { Number = "083733", DM = "202366", Name = "Criação de ambiente de Teste de Restore no DCRJ, DCDF e DCSP: AVAMAR" }
             };
 
             _context.AddRange(dtps);
@@ -74,8 +74,8 @@ namespace DTP.Data
 
             ParentRDM[] rdms =
             {
-                new ParentRDM(1, 107, "Bruno", "Henrique", 0, "Firewall", 0, "ABC", false, dtp, "Title", "Desc", DateTime.Now),
-                new ParentRDM(2, 108, "Parmigiani", "Caetano", 0, "Firewall", 0, "ABC", false, dtp, "Title", "Desc", DateTime.Now)
+                new ParentRDM { Number = 107, User = "Bruno", Requester = "Henrique", Environment = 0, Category = "Firewall", Type = 0, System = "ABC", Unavailable = false, Ticket = dtp, Summary = "Title", Description = "Desc", RequiredTo = DateTime.Now },
+                new ParentRDM { Number = 108, User = "Parmigiani", Requester = "Caetano", Environment = 0, Category = "Firewall", Type = 0, System = "ABC", Unavailable = false, Ticket = dtp, Summary = "Title", Description = "Desc", RequiredTo = DateTime.Now }
             };
 
             _context.ParentRDMs.AddRange(rdms);
@@ -96,8 +96,8 @@ namespace DTP.Data
 
             ChildrenRDM[] rdms =
             {
-                new ChildrenRDM(1, 109, "Bruno", "Henrique", 0, "Firewall", 0, "ABC", false, dtp, "Title", "Desc", DateTime.Now, p1),
-                new ChildrenRDM(2, 110, "Parmigiani", "Caetano", 0, "Firewall", 0, "ABC", false, dtp, "Title", "Desc", DateTime.Now, p2)
+                new ChildrenRDM { Number = 109, User = "Bruno", Requester = "Henrique", Environment = 0, Category = "Firewall", Type = 0, System = "ABC", Unavailable = false, Ticket = dtp, Summary = "Title", Description = "Desc", RequiredTo = DateTime.Now, Parent = p1 },
+                new ChildrenRDM { Number = 110, User = "Parmigiani", Requester = "Caetano", Environment = 0, Category = "Firewall", Type = 0, System = "ABC", Unavailable = false, Ticket = dtp, Summary = "Title", Description = "Desc", RequiredTo = DateTime.Now, Parent = p2 }
             };
 
             _context.ChildrenRDMs.AddRange(rdms);

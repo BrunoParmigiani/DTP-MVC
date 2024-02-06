@@ -22,11 +22,11 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<DTPContext>();
     context.Database.EnsureCreated();
 
-    /*SeedingService seedingService = new SeedingService(context);
+    SeedingService seedingService = new SeedingService(context);
     seedingService.SeedSites();
     seedingService.SeedDTPs();
     seedingService.SeedParentRDMs();
-    seedingService.SeedChildrenRDMs();*/
+    seedingService.SeedChildrenRDMs();
 }
 
 // Configure the HTTP request pipeline.
