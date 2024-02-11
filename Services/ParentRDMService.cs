@@ -44,6 +44,13 @@ namespace DTP.Services
         public async Task RemoveAsync(int id)
         {
             var obj = await _context.ParentRDMs.FindAsync(id);
+            var children = await FindChildrenAsync(obj);
+
+            foreach (var child in children)
+            {
+                _context.ChildrenRDMs.Remove(child);
+            }
+
             _context.ParentRDMs.Remove(obj);
             await _context.SaveChangesAsync();
         }
